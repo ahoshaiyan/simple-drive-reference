@@ -1,0 +1,2 @@
+class DbBlob < ApplicationRecord
+end

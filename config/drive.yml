@@ -1,0 +1,22 @@
+default: &default
+  api_key: '123'
+  provider: '<%= ENV.fetch('DRIVE_PROVIDER', 'local') %>'
+  local:
+    path: '<%= ENV['DRIVE_LOCAL_PATH'] %>'
+  s3:
+    base_url: '<%= ENV['DRIVE_AWS_BASE_URL'] %>'
+    region: '<%= ENV['DRIVE_AWS_REGION'] %>'
+    bucket: '<%= ENV['DRIVE_AWS_BUCKET'] %>'
+    key_id: '<%= ENV['DRIVE_AWS_KEY_ID'] %>'
+    key_secret: '<%= ENV['DRIVE_AWS_KEY_SECRET'] %>'
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+  # Force the user to set an API key for the production environment
+  api_key: '<%= ENV['DRIVE_API_KEY'] %>'
